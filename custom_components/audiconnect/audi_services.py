@@ -741,7 +741,7 @@ class AudiService:
         # get markets
         markets_json = await self._api.request(
             "GET",
-            "https://content.app.my.audi.com/service/mobileapp/configurations/markets",
+            "https://content.app.my.audi.com/service/mobileapp/configurations/market/EMEA/",
             None,
         )
         if (
@@ -754,10 +754,10 @@ class AudiService:
         ]["defaultLanguage"]
 
         # Dynamic configuration URLs
-        marketcfg_url = "https://content.app.my.audi.com/service/mobileapp/configurations/market/{c}/{l}?v=4.13.0".format(
+        marketcfg_url = "https://content.app.my.audi.com/service/mobileapp/configurations/market/EMEA/".format(
             c=self._country, l=self._language
         )
-        openidcfg_url = "https://{0}.bff.cariad.digital/login/v1/idk/openid-configuration.".format(
+        openidcfg_url = "https://emea.bff.cariad.digital/login/v1/idk/openid-configuration".format(
            "na" if self._country.upper() == "US" else "emea")
 
         # get market config
