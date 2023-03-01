@@ -757,7 +757,7 @@ class AudiService:
         marketcfg_url = "https://content.app.my.audi.com/service/mobileapp/configurations/market/{c}/{l}?v=4.13.0".format(
             c=self._country, l=self._language
         )
-        openidcfg_url = "https://idkproxy-service.apps.{0}.vwapps.io/v1/{0}/openid-configuration".format(
+        openidcfg_url = "https://{0}.bff.cariad.digital/login/v1/idk/openid-configuration.".format(
            "na" if self._country.upper() == "US" else "emea")
 
         # get market config
@@ -768,7 +768,7 @@ class AudiService:
         if "idkClientIDAndroidLive" in marketcfg_json:
             self._client_id = marketcfg_json["idkClientIDAndroidLive"]
 
-        self._authorizationServerBaseURLLive = "https://aazsproxy-service.apps.emea.vwapps.io"
+        self._authorizationServerBaseURLLive = "https://emea.bff.cariad.digital"
         if "authorizationServerBaseURLLive" in marketcfg_json:
             self._authorizationServerBaseURLLive = marketcfg_json[
                 "authorizationServerBaseURLLive"
@@ -784,7 +784,7 @@ class AudiService:
         authorization_endpoint = "https://identity.vwgroup.io/oidc/v1/authorize"
         if "authorization_endpoint" in openidcfg_json:
             authorization_endpoint = openidcfg_json["authorization_endpoint"]
-        self._tokenEndpoint = "https://idkproxy-service.apps.emea.vwapps.io/v1/emea/token"
+        self._tokenEndpoint = "https://emea.bff.cariad.digital/login/v1/idk/openid-configuration"
         if "token_endpoint" in openidcfg_json:
             self._tokenEndpoint = openidcfg_json["token_endpoint"]
         revocation_endpoint = (
