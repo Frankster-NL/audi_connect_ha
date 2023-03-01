@@ -741,7 +741,7 @@ class AudiService:
         # get markets
         markets_json = await self._api.request(
             "GET",
-            "https://content.app.my.audi.com/service/mobileapp/configurations/market/EMEA/",
+            "https://content.app.my.audi.com/service/mobileapp/configurations/market/DE/",
             None,
         )
         if (
@@ -754,8 +754,8 @@ class AudiService:
         ]["defaultLanguage"]
 
         # Dynamic configuration URLs
-        marketcfg_url = "https://content.app.my.audi.com/service/mobileapp/configurations/market/EMEA/".format(
-            c=self._country, l=self._language
+        marketcfg_url = "https://content.app.my.audi.com/service/mobileapp/configurations/market/DE/",
+            None,
         )
         openidcfg_url = "https://emea.bff.cariad.digital/login/v1/idk/openid-configuration".format(
            "na" if self._country.upper() == "US" else "emea")
@@ -781,7 +781,7 @@ class AudiService:
         openidcfg_json = await self._api.request("GET", openidcfg_url, None)
 
         # use dynamic config from openId config
-        authorization_endpoint = "https://identity.vwgroup.io/oidc/v1/authorize"
+        authorization_endpoint = "https://emea.bff.cariad.digital/login/v1/audi"
         if "authorization_endpoint" in openidcfg_json:
             authorization_endpoint = openidcfg_json["authorization_endpoint"]
         self._tokenEndpoint = "https://emea.bff.cariad.digital/login/v1/idk/openid-configuration"
